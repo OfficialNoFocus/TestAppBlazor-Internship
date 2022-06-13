@@ -1,0 +1,46 @@
+﻿@page "/"
+@layout MainLayout
+@*@using TestAppBlazor.Pages*@
+@inject NavigationManager NavigationManager
+
+<RadzenContent Container="main">
+    <ChildContent>
+        <RadzenHeading Size="H1" Text="Incidents">
+        </RadzenHeading>
+        <div class="row">
+            <div class="col-md-12">
+                <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="NavigateToAddComponent">
+                </RadzenButton>
+                <RadzenGrid AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" Data="incidents" TItem="TestAppBlazor.Models.IncidentsModel" PageSize="20">
+                    <Columns>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Id" Title="Id">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Title" Title="Title">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Discription" Title="Discription">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Location" Title="Location">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Owner" Title="Owner">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="CreationTime" FormatString="{0:MM/dd/yyyy}" Title="Creation Time">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Status" Title="Status">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Property="Weight" Title="Weight">
+                        </RadzenGridColumn>
+                        <RadzenGridColumn TItem="TestAppBlazor.Models.IncidentsModel" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                            <Template Context="TestAppBlazorModelsIncidentsMelderIncident">
+                                <RadzenButton Click=@(args => Delete(TestAppBlazorModelsIncidentsMelderIncident.Id)) ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" >
+                                </RadzenButton>
+                                <RadzenButton Click=@(args => NavigateToEditComponent(TestAppBlazorModelsIncidentsMelderIncident.Id)) ButtonStyle="ButtonStyle.Info" Icon="close" Size="ButtonSize.Small">
+                                </RadzenButton>
+                            </Template>
+                        </RadzenGridColumn>
+                    </Columns>
+                </RadzenGrid>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenContent>
+
